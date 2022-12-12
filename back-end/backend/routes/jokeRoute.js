@@ -9,9 +9,15 @@ router.post("/createJoke", jokeController.createJoke);
 router.get("/getOneJokeBySeq/:seq", jokeController.getOneJokeBySeq);
 
 router.get(
-  "/getOneJoke",
+  "/getOneNextJoke",
   userController.checkCookies,
-  jokeController.getOneJoke
+  jokeController.getOneNextJoke
+);
+
+router.get(
+  "/getOneCurrentJoke",
+  userController.checkCookies,
+  jokeController.getOneCurrentJoke
 );
 
 router.patch("/likeJoke/:seq", jokeController.likeJoke);

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   },
   currentJoke: {
     type: Number,
-    default: 0,
+    default: 1,
   },
 });
 

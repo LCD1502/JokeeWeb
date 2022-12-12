@@ -1,8 +1,47 @@
+import React, { useState, useEffect } from "react";
 import logo from "./logo.png";
 import sunflower from "./sunflower.jpg";
 import "./App.css";
+import ApiService from "./service/ApiService.js";
 
 function App() {
+  const [joke, setJoke] = useState({});
+
+  useEffect(() => {
+    ApiService.getOneCurrentJoke()
+      .then((res) => {
+        setJoke(res.data.joke);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+  console.log(joke);
+
+  const getNextJoke = () => {
+    ApiService.getOneNextJoke()
+      .then((res) => {
+        setJoke(res.data.joke);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const likeJoke = () => {
+    ApiService.likeJoke(joke.sequence)
+      .then((res) => {
+        console.log("like joke", res);
+      })
+      .catch((err) => console.log(err));
+    getNextJoke();
+  };
+
+  const dislikeJoke = () => {
+    ApiService.dislikeJoke(joke.sequence)
+      .then((res) => {
+        console.log("dislike joke", res);
+      })
+      .catch((err) => console.log(err));
+    getNextJoke();
+  };
+
   return (
     <div className="container">
       <div className="headerWrapper">
@@ -23,18 +62,26 @@ function App() {
       </div>
       <div className="jokeWrapper">
         <p className="jokeContent">
-          A child asked his father, "How were people born?" So his father said,
-          "Adam and Eve made babies, then their babies became adults and made
-          babies, and so on." The child then went to his mother, asked her the
-          same question and she told him, "We were monkeys then we evolved to
-          become like we are now." The child ran back to his father and said,
-          "You lied to me!" His father replied, "No, your mom was talking about
-          her side of the family."
+          {joke.content ? joke.content : joke.messageEnd}
         </p>
-        <div className="btnWrapper">
-          <button className="btn btnLike">This is funny!</button>
-          <button className="btn btnDislike">This is not funny.</button>
-        </div>
+
+        {joke.messageEnd ? (
+          <></>
+        ) : (
+          <div className="btnWrapper">
+            <button
+              className="btn btnLike"
+              onClick={() => {
+                likeJoke();
+              }}
+            >
+              This is funny!
+            </button>
+            <button className="btn btnDislike" onClick={() => dislikeJoke()}>
+              This is not funny.
+            </button>
+          </div>
+        )}
       </div>
       <div className="footer">
         <p className="footerText">

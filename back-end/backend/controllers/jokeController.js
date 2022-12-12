@@ -29,13 +29,15 @@ exports.getOneJokeBySeq = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getOneJoke = catchAsync(async (req, res, next) => {
+exports.getOneNextJoke = catchAsync(async (req, res, next) => {
   console.log(req.currentUser);
   const currentUser = req.currentUser;
   if (currentUser.currentJoke === 4) {
     res.status(200).json({
       status: "success",
-      message: "That's all the jokes for today! Come back another day!",
+      joke: {
+        messageEnd: "That's all the jokes for today! Come back another day!",
+      },
     });
   } else {
     const joke = await Joke.findOne({ sequence: currentUser.currentJoke + 1 });
@@ -46,6 +48,25 @@ exports.getOneJoke = catchAsync(async (req, res, next) => {
       }
     );
     console.log(updatedUser);
+    res.status(200).json({
+      status: "success",
+      joke,
+    });
+  }
+});
+
+exports.getOneCurrentJoke = catchAsync(async (req, res, next) => {
+  console.log(req.currentUser);
+  const currentUser = req.currentUser;
+  if (currentUser.currentJoke === 4) {
+    res.status(200).json({
+      status: "success",
+      joke: {
+        messageEnd: "That's all the jokes for today! Come back another day!",
+      },
+    });
+  } else {
+    const joke = await Joke.findOne({ sequence: currentUser.currentJoke });
     res.status(200).json({
       status: "success",
       joke,
