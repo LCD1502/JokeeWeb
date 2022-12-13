@@ -75,7 +75,7 @@ function App() {
                 likeJoke();
               }}
             >
-              This is funny!
+              This is Funny!
             </button>
             <button className="btn btnDislike" onClick={() => dislikeJoke()}>
               This is not funny.

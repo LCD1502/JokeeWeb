@@ -20,8 +20,9 @@
 }
 
 .title {
-  color: #aaa;
+  color: #888;
   font-style: italic;
+  font-size: 14px;
 }
 
 .avatar {
@@ -35,7 +36,7 @@
 .headingWrapper {
   width: 100%;
   text-align: center;
-  background-color: #2e8b57;
+  background-color: #29b363;
   height: 200px;
   color: #fff;
   display: flex;
@@ -56,7 +57,7 @@
 
 .jokeWrapper {
   width: 100%;
-  background-color: #eee;
+  background-color: #fcfcfc;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,28 +65,31 @@
 
 .jokeContent {
   width: 50%;
-  color: #555;
+  color: #6f6f6f;
   padding: 20px 0;
-  text-align: center;
+  text-align: left;
 }
 
 .btnWrapper {
   width: 40%;
   border-top: 1px solid #ccc;
-  padding: 30px 0;
+  padding: 20px 0 40px 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .btn {
-  margin: 20px;
-  padding: 8px 36px;
+  margin: 12px;
+  padding: 10px 0;
+  width: 36%;
   color: #fff;
   border: none;
+  box-shadow: inset 0px -1px 1px #666;
 }
 
 .btn.btnLike {
-  background-color: #4169e1;
+  background-color: #2c7edb;
 }
 
 .btn.btnLike:hover {
@@ -93,7 +97,7 @@
 }
 
 .btn.btnDislike {
-  background-color: #2e8b57;
+  background-color: #29b363;
 }
 
 .btn.btnDislike:hover {
@@ -112,10 +116,10 @@
 
 .footerText {
   text-align: center;
-  color: #555;
+  color: #979797;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 415px) {
   .jokeContent {
     width: 80%;
   }
@@ -124,9 +128,13 @@
     width: 80%;
     flex-direction: column;
   }
+
+  .btn {
+    width: 80%;
+  }
 }
 
-@media (max-width: 820px) and (min-width: 400px) {
+@media (max-width: 820px) and (min-width: 416px) {
   .jokeContent {
     width: 60%;
   }
