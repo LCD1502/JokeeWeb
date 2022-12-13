@@ -23,7 +23,6 @@ const createCookie = async (req, res, next) => {
 
 exports.checkCookies = catchAsync(async (req, res, next) => {
   if (req.cookies.sessionID) {
-    console.log("Ben tren");
     const currentUser = await User.findOne({
       sessionID: req.cookies.sessionID,
     });
@@ -34,7 +33,6 @@ exports.checkCookies = catchAsync(async (req, res, next) => {
       return next();
     }
   } else {
-    console.log("Ben duoi");
     catchAsync(createCookie(req, res, next));
   }
 });

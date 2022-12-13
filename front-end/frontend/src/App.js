@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.png";
-import sunflower from "./sunflower.jpg";
+import logo from "./img/logo.png";
+import sunflower from "./img/sunflower.jpg";
 import "./App.css";
 import ApiService from "./service/ApiService.js";
 

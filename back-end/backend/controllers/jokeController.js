@@ -30,7 +30,6 @@ exports.getOneJokeBySeq = catchAsync(async (req, res, next) => {
 });
 
 exports.getOneNextJoke = catchAsync(async (req, res, next) => {
-  console.log(req.currentUser);
   const currentUser = req.currentUser;
   if (currentUser.currentJoke === 4) {
     res.status(200).json({
@@ -47,7 +46,6 @@ exports.getOneNextJoke = catchAsync(async (req, res, next) => {
         currentJoke: currentUser.currentJoke + 1,
       }
     );
-    console.log(updatedUser);
     res.status(200).json({
       status: "success",
       joke,
@@ -56,7 +54,6 @@ exports.getOneNextJoke = catchAsync(async (req, res, next) => {
 });
 
 exports.getOneCurrentJoke = catchAsync(async (req, res, next) => {
-  console.log(req.currentUser);
   const currentUser = req.currentUser;
   if (currentUser.currentJoke === 4) {
     res.status(200).json({
